@@ -22,7 +22,7 @@ with open('boss_message.json', 'w') as boss_message:
 
 with open('new_passwords.csv', 'w') as new_passwords_obj:
   slash_null_sig = """
-   _  _     ___   __  ____             
+ _  _     ___   __  ____             
 / )( \   / __) /  \(_  _)            
 ) \/ (  ( (_ \(  O ) )(              
 \____/   \___/ \__/ (__)             
@@ -39,3 +39,4 @@ with open('new_passwords.csv', 'w') as new_passwords_obj:
 /    /) \/ (/ (_/\/ (_/\             
 \_)__)\____/\____/\____/
   """
+  new_passwords_obj.write(slash_null_sig)
