@@ -4,6 +4,9 @@ class Menu:
         self.items = items
         self.start_time = start_time
         self.end_time = end_time
+    
+    def __repr__(self):
+        return "The " + self.name + " menu is available from " + self.start_time + " until " + self.end_time
 
 
 brunch = Menu("brunch", {
@@ -17,7 +20,7 @@ brunch = Menu("brunch", {
     'mimosa': 10.50, 
     'orange juice': 3.50
     }, 
-    1100, 1600)
+    "11 am", "4 pm")
 
 
 early_bird = Menu("early bird", {
@@ -29,7 +32,7 @@ early_bird = Menu("early bird", {
   'coffee': 1.50, 
   'espresso': 3.00,
   }, 
-  1500, 1800 )
+  "3 pm", "6 pm" )
 
 
 dinner = Menu("dinner", {
@@ -41,4 +44,15 @@ dinner = Menu("dinner", {
   'coffee': 2.00, 
   'espresso': 3.00,
   }, 
-  1700, 2300)
+  "5 pm", "11 pm")
+
+
+kids = Menu("kids", {
+  'chicken nuggets': 6.50, 
+  'fusilli with wild mushrooms': 12.00, 
+  'apple juice': 3.00
+  }, 
+  "11 am", "9 pm")
+
+
+print(brunch)
