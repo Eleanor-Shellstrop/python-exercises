@@ -1,3 +1,7 @@
+#----------------------------------
+# Classes
+#----------------------------------
+
 # Original restaurant class
 class Menu:
     def __init__(self, name, items, start_time, end_time):
@@ -23,20 +27,30 @@ class Franchaise:
         self.menus = menus
     
     def __repr__(self):
-        return "This Basta Fazoolin' With My Heart restaurant is located at " + self.address
+        return "This restaurant is located at " + self.address
     
     def available_menus(self, time):
         available_menu = []
         for menu in self.menus:
             if time >= menu.start_time and time <= menu.end_time:
                 available_menu.append(menu)
+            else:
+                available_menu.append("Sorry, no menu is available at this time")
         return available_menu
 
 
+# Business class
+class Business:
+    def __init__(self, name, franchises):
+        self.name = name
+        self.franchises = franchises
 
-#----------------------------------------------------------------------------
+
+#----------------------------------
 # Menus
-#----------------------------------------------------------------------------
+#----------------------------------
+
+# For Basta Fazoolin
 
 brunch = Menu("brunch", {
     'pancakes': 7.50, 
@@ -84,13 +98,32 @@ kids = Menu("kids", {
   1100, 2100)
 
 
-#----------------------------------------------------------------------------
-# Add two locations
-#----------------------------------------------------------------------------
+# For Take a' Arepa
+
+arepas_menu = Menu("Arepas", {
+    'arepa pabellon': 7.00, 
+    'pernil arepa': 8.50, 
+    'guayanes arepa': 8.00, 
+    'jamon arepa': 7.50    
+    },
+    1000, 2000)
+
+
+#----------------------------------
+# Add three restaurant locations
+#----------------------------------
 
 flagship_store = Franchaise("1232 West End Road", [brunch, early_bird, dinner, kids])
 
 new_installment = Franchaise("12 East Mulberry Street", [brunch, early_bird, dinner, kids])
 
+arepas_place = Franchaise("189 Fitzgerald Avenue", [arepas_menu])
 
-print(new_installment.available_menus(1200))
+
+#----------------------------------
+# Add businesses
+#----------------------------------
+
+basta_business = Business("Basta Fazoolin' with My Heart", [flagship_store, new_installment])
+
+arepas_business = Business("Take a' Arepa", [arepas_place])
