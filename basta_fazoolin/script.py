@@ -1,3 +1,4 @@
+# Original restaurant class
 class Menu:
     def __init__(self, name, items, start_time, end_time):
         self.name = name
@@ -13,6 +14,21 @@ class Menu:
         for purchased_item in purchased_items:
             bill += self.items[purchased_item]
         return bill
+
+
+# Franchise class after main restaurant did well
+class Franchaise:
+    def __init__(self, address, menus):
+        self.address = address
+        self.menus = menus
+    
+    def __repr__(self):
+        return "This Basta Fazoolin' With My Heart restaurant is located at " + self.address
+
+
+#----------------------------------------------------------------------------
+# Menus
+#----------------------------------------------------------------------------
 
 brunch = Menu("brunch", {
     'pancakes': 7.50, 
@@ -60,4 +76,12 @@ kids = Menu("kids", {
   "11 am", "9 pm")
 
 
-print(brunch.calculate_bill(['pancakes', 'home fries', 'coffee']))
+#----------------------------------------------------------------------------
+# Add two locations
+#----------------------------------------------------------------------------
+
+flagship_store = Franchaise("1232 West End Road", [brunch, early_bird, dinner, kids])
+
+new_installment = Franchaise("12 East Mulberry Street", [brunch, early_bird, dinner, kids])
+
+print(flagship_store.menus)
