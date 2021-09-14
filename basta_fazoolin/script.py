@@ -7,7 +7,7 @@ class Menu:
         self.end_time = end_time
     
     def __repr__(self):
-        return "The " + self.name + " menu is available from " + self.start_time + " until " + self.end_time
+        return "The " + self.name + " menu is available from " + str(self.start_time) + " until " + str(self.end_time)
 
     def calculate_bill(self, purchased_items):
         bill = 0
@@ -24,6 +24,14 @@ class Franchaise:
     
     def __repr__(self):
         return "This Basta Fazoolin' With My Heart restaurant is located at " + self.address
+    
+    def available_menus(self, time):
+        available_menu = []
+        for menu in self.menus:
+            if time >= menu.start_time and time <= menu.end_time:
+                available_menu.append(menu)
+        return available_menu
+
 
 
 #----------------------------------------------------------------------------
@@ -41,7 +49,7 @@ brunch = Menu("brunch", {
     'mimosa': 10.50, 
     'orange juice': 3.50
     }, 
-    "11 am", "4 pm")
+    1100, 1600)
 
 
 early_bird = Menu("early bird", {
@@ -53,7 +61,7 @@ early_bird = Menu("early bird", {
   'coffee': 1.50, 
   'espresso': 3.00,
   }, 
-  "3 pm", "6 pm" )
+  1500, 1800)
 
 
 dinner = Menu("dinner", {
@@ -65,7 +73,7 @@ dinner = Menu("dinner", {
   'coffee': 2.00, 
   'espresso': 3.00,
   }, 
-  "5 pm", "11 pm")
+  1700, 2300)
 
 
 kids = Menu("kids", {
@@ -73,7 +81,7 @@ kids = Menu("kids", {
   'fusilli with wild mushrooms': 12.00, 
   'apple juice': 3.00
   }, 
-  "11 am", "9 pm")
+  1100, 2100)
 
 
 #----------------------------------------------------------------------------
@@ -84,4 +92,5 @@ flagship_store = Franchaise("1232 West End Road", [brunch, early_bird, dinner, k
 
 new_installment = Franchaise("12 East Mulberry Street", [brunch, early_bird, dinner, kids])
 
-print(flagship_store.menus)
+
+print(new_installment.available_menus(1200))
