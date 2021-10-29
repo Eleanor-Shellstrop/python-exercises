@@ -18,11 +18,24 @@ class Position:
 	def longitude(self):
 		return self._longitude
 
+	@property
+	def latitude_hemisphere(self):
+		return "N" if self.latitude >= 0 else "S"
+	
+	@property
+	def longitude_hemisphere(self):
+		return "E" if self.longitude >= 0 else "W"
+
 	# For new representation
 	def __repr__(self):
 		# Also acceptable: return f"{self.__class__.__name__} ...
 		return f"{typename(self)} (latitude={self.latitude}, longitude={self.longitude})"
 
+	def __str__(self):
+		return (
+			f"{abs(self.latitude)}° {self.latitude_hemisphere}, "
+			f"{abs(self.longitude)}° {self.longitude_hemisphere}"
+		)
 
 # Subclasses to demo inheritance
 
