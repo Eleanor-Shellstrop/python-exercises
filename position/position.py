@@ -20,4 +20,20 @@ class Position:
 
 	# For new representation
 	def __repr__(self):
-		return f"Position {self.latitude} {self.longitude}"
+		# Also acceptable: return f"{self.__class__.__name__} ...
+		return f"{typename(self)} (latitude={self.latitude}, longitude={self.longitude})"
+
+
+# Subclasses to demo inheritance
+
+class EarthPosition(Position):
+	pass
+
+
+class MarsPosition(Position):
+	pass
+
+
+# Small utility function to return type of object (class) and then name of the object
+def typename(obj):
+	return type(obj).__name__
