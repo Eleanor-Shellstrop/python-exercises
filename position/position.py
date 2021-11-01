@@ -37,6 +37,14 @@ class Position:
 			f"{abs(self.longitude)}° {self.longitude_hemisphere}"
 		)
 
+	def __format__(self, format_spec):
+		return "FORMATTED POSITION"
+		# Examples: 
+		# place = EarthPosition((-10.3, 57.2))
+		# f"some sentence {place}" = f"some sentence FORMATTED POSITION"
+		# "Another {}".format(place) = "Another FORMATTED POSITION"
+
+
 # Subclasses to demo inheritance
 
 class EarthPosition(Position):
