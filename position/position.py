@@ -32,18 +32,33 @@ class Position:
 		return f"{typename(self)} (latitude={self.latitude}, longitude={self.longitude})"
 
 	def __str__(self):
-		return (
-			f"{abs(self.latitude)}° {self.latitude_hemisphere}, "
-			f"{abs(self.longitude)}° {self.longitude_hemisphere}"
-		)
+		return format(self)
 
 	def __format__(self, format_spec):
-		return "FORMATTED POSITION"
-		# Examples: 
-		# place = EarthPosition((-10.3, 57.2))
-		# f"some sentence {place}" = f"some sentence FORMATTED POSITION"
-		# "Another {}".format(place) = "Another FORMATTED POSITION"
+		component_format_spec = ".2f"
+		# Check for float:
+		prefix, dot, suffix = format_spec.partition(".")
+		if dot:
+			num_decimal_places = int(suffix)
+			component_format_spec = f".{num_decimal_places}f"
+			# Example of this working:
+			# matterhorn = EarthPosition(45.9763, 7.586)
+			# format(matterhorn, ".1") // Returns (46.0 N, 7.7 E)
+		latitude = format(abs(self.latitude), component_format_spec)
+		longitude = format(abs(self.longitude), component_format_spec)
+		return (
+			f"{latitude}° {self.latitude_hemisphere}, "
+			f"{longitude}° {self.longitude_hemisphere}"
+		)
+		
 
+# __format__ can specify floats:
+# '7.748091e-05'
+# format(q, "f") returns '0.000077'
+# format(q, ".11f") returns '0.00007748091'
+# f"The conductance quantum is {q}" // Returns 'The conductance quantum is 7.748091e-05'
+# f"The conductance quantum is {q:.6f}" // Returns 'The conductance quantum is 0.000077'
+# Or force smaller: f"quantum is {q:.2e}" // Returns 'quantum is 7.75e-05'
 
 # Subclasses to demo inheritance
 
