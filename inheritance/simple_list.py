@@ -28,11 +28,6 @@ class SortedList(SimpleList):
 		self.sort()
 
 
-# isinstance returns boolean value, 
-# Can take tuples as arguments:
-# isinstance(obj, (type_a, type_b, type_c))
-# Will check for instance of any of the types
-
 
 class IntList(SimpleList):
 	def __init__(self, items):
@@ -47,3 +42,17 @@ class IntList(SimpleList):
 	def add(self, item):
 		self._validate(item)
 		super().add(item)
+
+
+class SortedIntList(IntList, SortedList):
+	pass
+
+# If a class uses multiple inheritance 
+# and defines no initializer, 
+# only the initializer of the 
+# base class is automatically called. 
+
+# __bases__
+# A tuple containing the base classes, 
+# in the order of their occurrence 
+# in the base class list.
