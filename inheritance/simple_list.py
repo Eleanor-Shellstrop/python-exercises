@@ -47,12 +47,10 @@ class IntList(SimpleList):
 class SortedIntList(IntList, SortedList):
 	pass
 
-# If a class uses multiple inheritance 
-# and defines no initializer, 
-# only the initializer of the 
-# base class is automatically called. 
-
-# __bases__
-# A tuple containing the base classes, 
-# in the order of their occurrence 
-# in the base class list.
+# __mro__
+# Method Resolution Order
+# Tuple of classes defining the method resolution order
+# C3 ensures that:
+# - Subclasses before base classes
+# - Base order from class definition is preserved
+# - The 1st two qualities and preserved for all MROs in a program
