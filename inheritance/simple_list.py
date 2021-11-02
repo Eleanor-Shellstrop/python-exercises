@@ -47,10 +47,9 @@ class IntList(SimpleList):
 class SortedIntList(IntList, SortedList):
 	pass
 
-# __mro__
-# Method Resolution Order
-# Tuple of classes defining the method resolution order
-# C3 ensures that:
-# - Subclasses before base classes
-# - Base order from class definition is preserved
-# - The 1st two qualities and preserved for all MROs in a program
+# super()
+# given a method resolution order and a
+# class c in that mro, 
+# super() gives you an object which 
+# resolves methods using only 
+# part of the mro that comes after c
