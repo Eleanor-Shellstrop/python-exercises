@@ -16,3 +16,34 @@ class SimpleList:
 	
 	def __repr__(self):
 		return f'{type(self).__name__}({self._items!r})'
+
+
+class SortedList(SimpleList):
+	def __init__(self, items):
+		super().__init__(items)
+		self.sort()
+	
+	def add(self, item):
+		super().add(item)
+		self.sort()
+
+
+# isinstance returns boolean value, 
+# Can take tuples as arguments:
+# isinstance(obj, (type_a, type_b, type_c))
+# Will check for instance of any of the types
+
+
+class IntList(SimpleList):
+	def __init__(self, items):
+		for x in items: self._validate(x)
+		super().__init__(items)
+	
+	@staticmethod
+	def _validate(x):
+		if not isinstance(x, int):
+			raise TypeError('IntList only supports integer values.')
+	
+	def add(self, item):
+		self._validate(item)
+		super().add(item)
