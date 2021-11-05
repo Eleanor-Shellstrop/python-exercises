@@ -104,7 +104,48 @@ class InOrderIterator:
 	def __iter__(self):
 		return self
 
-# Repl example:
-# expr_tree = ["*", "+", "-", "a", "b", "c", "d"]
+###################
+# IMPERFECT TREES
+# Create an empty object (sentinel) to complete
+# Can't make a sequence, but you can make a list
+
+# Example: r + p * q
+
+missing = object()
+expr_tree = ["+", "r", "*", missing, missing, "p", "q"]
+
+#iterator = InOrderIterator(expr_tree)
+#print(" ".join(iterator))	
+# # Returns "TypeError: sequence item 0: expected str instance, object found"
+
 # iterator = InOrderIterator(expr_tree)
-# " ".join(iterator) 	\\ Returns 'a + b * c - d'
+# print(list(iterator))		
+# # Returns [<object object at 0x00000241BD8A84D0>, 'r', <object object at 0x00000241BD8A84D0>, '+', 'p', '*', 'q']
+###################
+
+
+# Make a wrapper for the iterator
+class SkipMissingIterator:
+
+	def __init__(self, iterable):
+		self._iterator = iter(iterable)
+
+	def __next__(self):
+		while True:
+			item = next(self._iterator)
+			if item is not missing:
+				return item
+	
+	def __iter__(self):
+		return self
+
+# Repl Example:
+# expr_tree = ["+", "r", "*", missing, missing, "p", "q"]
+# iterator = SkipMissingIterator(expr_tree)
+# list(iterator)
+# Returns ["+", "r", "*", "p", "q"]
+
+# Can also chain (but order is important)
+# iterator = SkipMissigIterator(InOrderIterator(expr_trees))
+# " ".join(iterator)
+# Returns 'r + p * q'
