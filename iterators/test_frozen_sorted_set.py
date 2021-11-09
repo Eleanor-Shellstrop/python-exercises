@@ -91,5 +91,38 @@ class TestIterableProtocol(unittest.TestCase):
 			index += 1
 
 
+class TestSequenceProtocol(unittest.TestCase):
+	
+	def setUp(self):
+		self.s = SortedFrozenSet([1, 4, 9, 13, 15])
+	
+	# Test first index
+	def test_index_zero(self):
+		self.assertEqual(self.s[0], 1)
+
+	# Test last index
+	def test_index_four(self):
+		self.assertEqual(self.s[4], 15)
+
+	# Test index after last raises index error
+	def test_index_one_beyond_the_end(self):
+		with self.assertRaises(IndexError):
+			self.s[5]
+	
+	# Test that indexing -1 is last element
+	def test_index_minus_one(self):
+		self.assertEqual(self.s[-1], 15)
+
+	# Test that indexing -5 is first element
+	def test_index_minus_five(self):
+		self.assertEqual(self.s[-5], 1)
+	
+	# Test indexing one before beginning raises index error
+	def test_index_one_before_the_beginning(self):
+		with self.assertRaises(IndexError):
+			self.s[-6]
+		
+
+
 if __name__ == "__main__":
 	unittest.main()
