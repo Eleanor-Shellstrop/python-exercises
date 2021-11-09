@@ -122,6 +122,23 @@ class TestSequenceProtocol(unittest.TestCase):
 		with self.assertRaises(IndexError):
 			self.s[-6]
 		
+	def test_slice_from_start(self):
+		self.assertEqual(self.s[:3], SortedFrozenSet([1, 4, 9]))
+
+	def test_slice_to_end(self):
+		self.assertEqual(self.s[3:], SortedFrozenSet([13, 15]))
+
+	def test_slice_empty(self):
+		self.assertEqual(self.s[10:], SortedFrozenSet())
+	
+	def test_slice_arbitrary(self):
+		self.assertEqual(self.s[2:4], SortedFrozenSet([9, 13]))
+	
+	def test_slice_step(self):
+		self.assertEqual(self.s[0:5:2], SortedFrozenSet([1, 9, 15]))
+
+	def test_slice_full(self):
+		self.assertEqual(self.s[:], self.s)
 
 
 if __name__ == "__main__":

@@ -1,3 +1,6 @@
+from unittest import result
+
+
 class SortedFrozenSet:
 
 	def __init__(self, items=None):
@@ -16,4 +19,9 @@ class SortedFrozenSet:
 		return iter(self._items)
 
 	def __getitem__(self, index):
-		return self._items[index]
+		result = self._items[index]
+		return (
+			SortedFrozenSet(result)
+			if isinstance(index, slice)
+			else result
+		)
