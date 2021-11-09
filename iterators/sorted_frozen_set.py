@@ -1,7 +1,8 @@
 from unittest import result
+from collections.abc import Sequence
 
 
-class SortedFrozenSet:
+class SortedFrozenSet(Sequence):
 
 	def __init__(self, items=None):
 		self._items = tuple(sorted(
