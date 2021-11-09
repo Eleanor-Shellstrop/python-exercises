@@ -1,7 +1,7 @@
 class SortedFrozenSet:
 
 	def __init__(self, items=None):
-		self._items = (
+		self._items = sorted(
 			set(items) if (items is not None)
 			else set()
 		)
@@ -11,3 +11,6 @@ class SortedFrozenSet:
 
 	def __len__(self):
 		return len(self._items)
+
+	def __iter__(self):
+		return iter(self._items)

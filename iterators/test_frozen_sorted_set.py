@@ -1,3 +1,4 @@
+from typing import Union
 import unittest
 
 from sorted_frozen_set import SortedFrozenSet
@@ -63,6 +64,32 @@ class TestSizedProtocol(unittest.TestCase):
 	def test_with_duplicates(self):
 		s = SortedFrozenSet([5, 5, 5])
 		self.assertEqual(len(s), 1)
+
+
+class TestIterableProtocol(unittest.TestCase):
+
+	def setUp(self):
+		self.s = SortedFrozenSet([7, 2, 1, 1, 9])
+
+	def test_iter(self):
+		iterator = iter(self.s)
+		self.assertEqual(next(iterator), 1)
+		self.assertEqual(next(iterator), 2)
+		self.assertEqual(next(iterator), 7)
+		self.assertEqual(next(iterator), 9)
+		self.assertRaises(
+			StopIteration,
+			lambda: next(iterator)
+		)
+	
+	#This function should work exactly as one above
+	def test_for_loop(self):
+		expected = [1, 2, 7, 9]
+		index = 0
+		for item in self.s:
+			self.assertEqual(item, expected[index])
+			index += 1
+
 
 if __name__ == "__main__":
 	unittest.main()
