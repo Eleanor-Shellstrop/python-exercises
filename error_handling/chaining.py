@@ -1,4 +1,5 @@
 import math
+from traceback import print_tb
 
 
 class InclinationError(Exception):
@@ -11,6 +12,12 @@ def inclination(dx, dy):
 	except ZeroDivisionError as e:
 		raise InclinationError("Slope cannot be vertical") from e
 
-# Explicit Exeception Chaining:
-# except <original exception type> as e:
-# raise <new exception type> from e
+
+def main():
+	try:
+		inclination(0, 5)
+	except InclinationError as e:
+		print(e.__traceback__)
+		print_tb(e.__traceback__)
+	
+	print("Finished")
