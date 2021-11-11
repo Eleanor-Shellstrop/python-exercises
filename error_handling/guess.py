@@ -1,3 +1,5 @@
+# EXCEPTION HEIRARCHIES
+
 from random import randrange
 
 
